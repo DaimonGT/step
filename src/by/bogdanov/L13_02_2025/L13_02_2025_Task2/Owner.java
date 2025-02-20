@@ -6,6 +6,8 @@ public class Owner {
     private int id;
     private String name;
     private String surName;
+    private static String[] arraySex = new String[2];
+    private  String sex;
     private static String[] names = new String[5];
     private static String[] surNames = new String[5];
     private Pet[] pets = new Pet[5];
@@ -28,6 +30,9 @@ public class Owner {
         surNames[2] = "Маленко";
         surNames[3] = "Моисенко";
         surNames[4] = "Литвиненко";
+
+        arraySex[0] = "Male";
+        arraySex[1] = "Female";
     }
 
     // конструктор
@@ -35,6 +40,7 @@ public class Owner {
         this.id = ++ totalOwners;
         this.name = names[random.nextInt(names.length)];
         this.surName = surNames[random.nextInt(surNames.length)];
+        this.sex = arraySex[random.nextInt(arraySex.length)];
     }
 
     // геттеры
@@ -52,6 +58,10 @@ public class Owner {
 
     public Pet[] getPets() {
         return pets;
+    }
+
+    public  String getSex() {
+        return sex;
     }
 
     // сеттеры

@@ -27,10 +27,10 @@ public abstract class Pet extends Animal {
 
     @Override
     public String toString() {
-        return super.toString() + " Домашнее животное, хозяин: " + owner.getName() + " " + owner.getSurName();
+        return super.toString() + " Домашнее животное, хозяин: " + owner.getName() + " " + owner.getSurName() + " " + owner.getSex();
     }
 
     public void play(){
-        System.out.println(super.getName() + " играет с хозяином " + owner.getName());
+        System.out.println(super.getName() + " играет с хозяином " + owner.getName() + " " + owner.getSex());
     }
 }
