@@ -2,28 +2,25 @@ package by.bogdanov.L13_02_2025.L13_02_2025_Task2;
 
 import java.util.Random;
 
-public  class PetFactory {
-    private String namePet;
-    private static String[] arrNamePets = new String[3];
-    private String speciec;
-    private static String arrpSecieces[] = new String[3];
-    private int agePet;
-    Random randomNum = new Random();
+public class PetFactory {
 
-    static {
-        arrNamePets[0] = "Барсик";
-        arrNamePets[1] = "Мурка";
-        arrNamePets[2] = "Тузик";
+    private static String[] petName = { "Мурка", "Барсик", "Шарик", "Тузик", "Чарли", "Кеша", "Карлуша", "Марта" };
 
-        arrpSecieces[0] = "Собака";
-        arrpSecieces[1] = "Кошка";
-        arrpSecieces[2] = "Птичка";
+    private static Random random = new Random();
 
+    // Рандомная генерация питомца
+    public static Pet next() {
+        String randomPetName = petName[random.nextInt(petName.length)];
+        int randomPetAge = random.nextInt(15);
+        int i = random.nextInt(3);
+        if (i == 2) {
+            return new Cat(randomPetName, randomPetAge);
+        } else if (i == 1) {
+            return new Dog(randomPetName, randomPetAge);
+        } else {
+            return new Bird(randomPetName, randomPetAge);
+        }
     }
 
-    public PetFactory(String namePet, String speciec, int agePet) {
-        this.namePet = namePet;
-        this.speciec = speciec;
-        this.agePet = agePet;
-    }
 }
+
