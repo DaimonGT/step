@@ -1,6 +1,6 @@
 package by.bogdanov.L13_02_2025.L13_02_2025_Task2;
 
-public class Bird extends Pet {
+public class Bird extends Pet implements Flyable, Swimable {
 
     private static String species = "Птица";
 
@@ -23,4 +23,13 @@ public class Bird extends Pet {
         System.out.println(getName() + " клюет зерна.");
     }
 
+    @Override
+    public void fly() {
+        System.out.println(getName() + " летает");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println(getName() + " плывёт");
+    }
 }
