@@ -1,7 +1,10 @@
 package by.bogdanov.L13_02_2025;
 
 public class Lion extends WildAnimal {
-    public Lion(String name, String species, int age, String area) {
+
+    private static String species = "Лев";
+
+    public Lion(String name, int age, String area) {
         super(name, species, age, area);
     }
 
