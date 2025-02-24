@@ -22,7 +22,7 @@ public class Zoo {
                 bird.move();
             }
         }
-        Flyable[] flyable = new Flyable[1]; //
+        Flyable[] flyable = new Flyable[1];
         flyable[0] = new Bird("Утка", 10);
     }
 
