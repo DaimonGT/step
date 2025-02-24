@@ -2,8 +2,10 @@ package by.bogdanov.L13_02_2025.L13_02_2025_Task2_HomeWork;
 
 public class Cat extends Pet {
 
-    public Cat(String name, String species, int age, String holderName) {
-        super(name, species, age, holderName);
+    private static String species = "Кот";
+
+    public Cat(String name, int age) {
+        super(name, species, age);
     }
 
     public void makeSound() {
