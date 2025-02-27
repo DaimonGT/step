@@ -74,7 +74,6 @@ public class Recruit {
             this.diagnosis += diagnosis + ", ";
         }
         this.diagnosis = diagnosis;
-        //this.diagnosis = diagnosis; // сделать проверку, если диагноз null, то присвоить диагноз, если не null, то this diagnos = + dignos
     }
 
     public int getCardiogram() {

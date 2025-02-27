@@ -6,7 +6,7 @@ public class RecruitGenerator {
     private String[] name = {"Александр", "Владимир", "Максим", "Сергей", "Алексей", "Михаил", "Роман", "Олег", "Владислав", "Николай"};
     private String[] lastName = {"Кузнецов", "Петров", "Богданов", "Козлов", "Раков", "Солдатов", "Соколов", "Шматко", "Волик", "Баранов"};
     private String[] middleName = {"Владимирович", "Александрович", "Антонович", "Сергеевич", "Николаевич", "Аркадьевич", "Валериевич", "Викторович", "Григорьевич", "Вячеславович"};
-    Random num = new Random();
+    private  static final Random num = new Random();
 
     public Recruit generate() {
         String randomName = name[num.nextInt(name.length)];
