@@ -15,4 +15,16 @@ public class Student {
     public String toString() {
         return name + " " + age + " Средний балл: " + grade;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
 }
