@@ -1,6 +1,8 @@
 package by.bogdanov.L03_03_2025.Student;
 
-public class Student {
+import java.util.Objects;
+
+public class Student implements Comparable<Student> { // Для сортировки
     private String name;
     private int age;
     private double grade;
@@ -9,11 +11,6 @@ public class Student {
         this.name = name;
         this.age = age;
         this.grade = grade;
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + age + " Средний балл: " + grade;
     }
 
     public String getName() {
@@ -26,5 +23,32 @@ public class Student {
 
     public double getGrade() {
         return grade;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + age + " Средний балл: " + grade;
+    }
+
+    // метод сравнения
+    @Override
+    public int compareTo(Student o) {
+        int nameCompare = this.name.compareTo(o.name);
+        if(nameCompare !=0) {
+            return nameCompare;
+        }
+        return Integer.compare(this.age, o.age);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(name, student.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 }
