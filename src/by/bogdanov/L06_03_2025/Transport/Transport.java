@@ -1,10 +1,12 @@
 package by.bogdanov.L06_03_2025.Transport;
 
+import by.bogdanov.L03_03_2025.Student.Student;
+
 import java.util.Objects;
 
 public abstract class Transport {
     private String model;
-    private int speed;
+    private final int speed;
 
     public Transport(String model, int speed) {
         this.model = model;
@@ -28,7 +30,8 @@ public abstract class Transport {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(model);
+        return Objects.hash(getClass() , model);
+        //return Objects.hashCode(model);
     }
 
     @Override

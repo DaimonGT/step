@@ -5,10 +5,8 @@ import static by.bogdanov.L06_03_2025.Transport.TransportManager.*;
 public class Main {
     public static void main(String[] args) {
         TransportManager transportManager = new TransportManager();
-        TransportModelComparator comparator = new TransportModelComparator();
-        TransportSpeedComparator comparator1 = new TransportSpeedComparator();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             transportManager.addTransport(TransportFactory.next());
         }
 
@@ -24,13 +22,13 @@ public class Main {
         System.out.println();
 
         System.out.println("Сортировка массивов по скорости");
-        transportManager.sortTransportBySpeed(transportList, uniqueTransportSet, comparator1);
+        transportManager.sortTransportBySpeed();
         transportManager.printAllTransport();
         transportManager.printUniqueTransport();
         System.out.println();
 
         System.out.println("Сортировка массивов по модели");
-        transportManager.sortTransportByModel(transportList, uniqueTransportSet, comparator);
+        transportManager.sortTransportByModel();
         transportManager.printAllTransport();
         transportManager.printUniqueTransport();
     }

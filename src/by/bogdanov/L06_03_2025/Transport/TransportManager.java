@@ -3,8 +3,9 @@ package by.bogdanov.L06_03_2025.Transport;
 import java.util.*;
 
 public class TransportManager {
-    static List<Transport> transportList = new ArrayList<>();
-    static Set<Transport> uniqueTransportSet = new HashSet<>();
+    static final List<Transport> transportList = new ArrayList<>();
+    static final Set<Transport> uniqueTransportSet = new HashSet<>();
+    static final Set<Transport> uniqueTransportTreeSet = new TreeSet<>();
 
     // Добавление рандомного тарнспорта в массив
     public static void addTransport(Transport transport) {
@@ -31,17 +32,17 @@ public class TransportManager {
     }
 
     // сортировка массивов по скорости
-    public static void sortTransportBySpeed(List<Transport> transportList, Set<Transport> uniqueTransportSet, Comparator<Transport> comparator) {
-        transportList.sort(comparator);
+    public static void sortTransportBySpeed() { // (List<Transport> transportList, Set<Transport> uniqueTransportSet, Comparator<Transport> comparator)
+        transportList.sort(new TransportSpeedComparator()); // (comparator)
         List<Transport> uniqueTransportList = new ArrayList<>(uniqueTransportSet); // Преобразуем set в list
-        uniqueTransportList.sort(comparator);
+        uniqueTransportList.sort(new TransportSpeedComparator());
     }
 
     // сортировка массивов по модели
-    public static void sortTransportByModel(List<Transport> transportList, Set<Transport> uniqueTransportSet, Comparator<Transport> comparator) {
-        transportList.sort(comparator);
+    public static void sortTransportByModel() { // (List<Transport> transportList, Set<Transport> uniqueTransportSet, Comparator<Transport> comparator)
+        transportList.sort(new TransportModelComparator());
         List<Transport> uniqueTransportList = new ArrayList<>(uniqueTransportSet); // Преобразуем set в list
-        uniqueTransportList.sort(comparator);
+        uniqueTransportList.sort(new TransportModelComparator());
     }
 
     // вывод списка тарспорта из массива transportList
