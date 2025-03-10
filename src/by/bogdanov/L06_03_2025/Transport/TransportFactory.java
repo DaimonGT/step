@@ -9,10 +9,10 @@ public class TransportFactory {
     private static final List<String> typeOfFuels = List.of("Бензин", "Дизель", "Газ");
 
     // нельзя изменить конструктов
-    private TransportFactory() {
-    }
+   private TransportFactory() {
+   }
 
-    private static Transport nextTransport() {
+    static Transport next() {
         int countTransport = num.nextInt(3);
         if (countTransport == 1) {
             return new Bike(models.get(num.nextInt(models.size())), num.nextInt(220, 400), num.nextBoolean());
