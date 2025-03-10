@@ -7,4 +7,9 @@ public class Truck extends Transport {
         super(model, speed);
         this.loadCapacity = loadCapacity;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " грузоподъемность: " + loadCapacity;
+    }
 }

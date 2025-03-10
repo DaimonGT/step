@@ -7,4 +7,9 @@ public class Car extends Transport {
         super(model, speed);
         this.fuelType = fuelType;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Тип топлива: " + fuelType;
+    }
 }

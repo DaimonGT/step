@@ -30,7 +30,7 @@ public class TransportManager {
         }
     }
 
-    // может с помощью коллекции?
+    // сортировка массивов по скорости
     public static void sortTransportBySpeed(List<Transport> transportList, Set<Transport> uniqueTransportSet, Comparator<Transport> comparator) {
         transportList.sort(comparator);
         List<Transport> uniqueTransportList = new ArrayList<>(uniqueTransportSet); // Преобразуем set в list

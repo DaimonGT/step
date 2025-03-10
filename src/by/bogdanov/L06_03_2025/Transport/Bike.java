@@ -7,4 +7,9 @@ public class Bike extends Transport {
         super(model, speed);
         this.hasSidecar = hasSidecar;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Наличие коляски: " + hasSidecar;
+    }
 }
