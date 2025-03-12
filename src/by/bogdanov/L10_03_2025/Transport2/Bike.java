@@ -1,4 +1,4 @@
-package by.bogdanov.L10_03_2025.Transport;
+package by.bogdanov.L10_03_2025.Transport2;
 
 public class Bike extends Transport {
     private boolean hasSidecar;

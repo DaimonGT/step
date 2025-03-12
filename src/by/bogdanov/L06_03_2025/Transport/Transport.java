@@ -1,7 +1,5 @@
 package by.bogdanov.L06_03_2025.Transport;
 
-import by.bogdanov.L03_03_2025.Student.Student;
-
 import java.util.Objects;
 
 public abstract class Transport {

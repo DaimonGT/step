@@ -1,8 +1,8 @@
-package by.bogdanov.L10_03_2025.Transport;
+package by.bogdanov.L10_03_2025.Transport2;
 
 import java.util.Objects;
 
-public abstract class Transport {
+public abstract class Transport implements Comparable<Transport> {
     private String model;
     private final int speed;
     private final String licensePlate;
@@ -40,5 +40,14 @@ public abstract class Transport {
     @Override
     public String toString() {
         return "Модель: " + model + " максимальная скорость: " + speed;
+    }
+
+    @Override
+    public int compareTo(Transport o) {
+        int nameCompare = this.model.compareTo(o.model);
+        if(nameCompare !=0) {
+            return nameCompare;
+        }
+        return Integer.compare(this.speed, o.speed);
     }
 }

@@ -1,4 +1,4 @@
-package by.bogdanov.L10_03_2025.Transport;
+package by.bogdanov.L10_03_2025.Transport2;
 
 public class Truck extends Transport {
     private int loadCapacity;
@@ -12,4 +12,5 @@ public class Truck extends Transport {
     public String toString() {
         return super.toString() + " грузоподъемность: " + loadCapacity;
     }
+
 }
