@@ -36,6 +36,7 @@ public class TransportManager {
         return transport;
     }
 
+    // метод возврата коллекции по типу
     public List getTransportByType(String type){
         List<Transport> transportByTypeCollections = new ArrayList<>();
         if(type.equals(transportByType.getClass())) {
