@@ -16,7 +16,14 @@ public class Main {
         System.out.println("возврат транспорт по номерному знаку");
         transportManager.findTransportByPlate("9999");
 
+        System.out.println();
+        System.out.println("");
+
         transportManager.printUniqueTransport();
 
+        int compare = Integer.compare(10, 10);
+        System.out.println(compare);
+        Integer integer = Integer.getInteger("13"); //
+        System.out.println(integer);
     }
 }

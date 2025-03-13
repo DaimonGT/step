@@ -3,7 +3,7 @@ package by.bogdanov.L10_03_2025.Transport2;
 import java.util.Objects;
 
 public abstract class Transport implements Comparable<Transport> {
-    private String model;
+    private final String model;
     private final int speed;
     private final String licensePlate;
 

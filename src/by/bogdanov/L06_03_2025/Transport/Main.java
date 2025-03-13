@@ -16,7 +16,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Удаление транспорта из массива по модели");
-        removeTransport(transportList, uniqueTransportSet, "BMW");
+        //removeTransport(transportList, uniqueTransportSet, "BMW");
         transportManager.printAllTransport();
         transportManager.printUniqueTransport();
         System.out.println();
