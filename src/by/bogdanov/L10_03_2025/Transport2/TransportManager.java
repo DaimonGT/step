@@ -9,23 +9,20 @@ public class TransportManager {
     static Map<String, Transport> transportByPlate = new HashMap<>();
     static Map<String, List<Transport>> transportByType = new HashMap<>();
 
+    // добавляет транспорт в 2 списка
     public void addTransport(Transport transport) {
         transportByPlate.put(transport.getLicensePlate(), transport);
         transportByType.putIfAbsent(transport.getClass().getSimpleName(), new ArrayList<>());
         transportByType.get(transport.getClass().getSimpleName()).add(transport);
     }
 
-    public void printUniqueTransport() {
-        transportByPlate.forEach((key, value) -> System.out.println(key + ": " + value));
-        transportByType.forEach((key, value) -> {
-           System.out.println(key + ": " + value);
-        });
-    }
-    public static void removeTransport(String licensePlate) {
+    //  удаляет транспорт по модели из 2 списков
+    public void removeTransport(String licensePlate) {
         transportByPlate.remove(licensePlate);
         transportByType.remove(licensePlate);
     }
 
+    // Метод ищет и возвращает транспорт по номерному знаку из коллекции transportByPlate
     public Transport findTransportByPlate(String licensePlate) {
         Transport transport = transportByPlate.get(licensePlate);
         if (licensePlate.equals(transport.getLicensePlate())) {
@@ -37,11 +34,19 @@ public class TransportManager {
     }
 
     // метод возврата коллекции по типу
-    public List getTransportByType(String type){
-        List<Transport> transportByTypeCollections = new ArrayList<>();
-        if(type.equals(transportByType.getClass())) {
-            return
-        }
+    public List<Transport> getTransportByType(String type) {
+        return transportByType.getOrDefault(type, null);
+    }
+
+    // метод возвращает самый быстрый транспорт данного типа из коллекции transportByType
+
+    // выводит в консоль все траспортные средства из transportByPlate
+    public void printUniqueTransport() {
+        transportByPlate.forEach((key, value) -> System.out.println(key + ": " + value));
+/*        transportByType.forEach((key, value) -> {
+            System.out.println(key + ": " + value);
+        });*/
     }
 
 }
+
