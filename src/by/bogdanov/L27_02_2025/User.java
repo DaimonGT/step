@@ -3,8 +3,8 @@ package by.bogdanov.L27_02_2025;
 import java.util.Objects;
 
 public class User implements Cloneable {
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
 
     public User(String name, int age) {
         this.name = name;
@@ -19,13 +19,13 @@ public class User implements Cloneable {
         return age;
     }
 
-    public void setName(String name) {
+/*    public void setName(String name) {
         this.name = name;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
