@@ -5,12 +5,17 @@ import java.util.*;
 public class TransportUserManager {
     private final Map<User, List<Transport>> transportByOwner = new HashMap<>();
 
-    public void addTransport(Transport transport){
-        User user = transport.getUser();
-        transportByOwner.putIfAbsent(user, new ArrayList<>());
+    public void addTransport(User owner, Transport transport) {
+        List<Transport> transports = transportByOwner.get(owner);
+        if (transports == null) {
+            transports = new ArrayList<>();
+            transportByOwner.put(owner, transports);
+        }
+
+        transports.add(transport);
     }
 
-    public List<Transport> getTransportByOwner(User owner){
+    public List<Transport> getTransportByOwner(User owner) {
         return transportByOwner.get(owner);
     }
 
@@ -32,5 +37,20 @@ public class TransportUserManager {
         List<Transport> transports = transportByOwner.get(owner);
         transports.sort(new TransportSpeedComparator());
         return transports.getLast();
+    }
+
+    public User findOwnerWithMostCars() {
+        Map<Integer, User> ownerWithMostCars = new TreeMap<>();
+        for(Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()){
+            User owner = entry.getKey();
+            List<Transport> value = entry.getValue();
+            ownerWithMostCars.put(value.size(), owner);
+        }
+        Map.Entry<Integer, User> lastEntry = ((TreeMap<Integer, User>) ownerWithMostCars).lastEntry(); // спросить что за запись и как работает
+        return lastEntry.getValue();
+    }
+
+    public void printAllOwnersAndTransport(){
+        transportByOwner.forEach((user, transports) -> System.out.println(user.getName() + ": " + transports));
     }
 }
