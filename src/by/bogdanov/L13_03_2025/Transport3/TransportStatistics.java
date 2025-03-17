@@ -8,8 +8,14 @@ public class TransportStatistics {
     private int count = 0;
 
     public void addTransport(Transport transport) {
-        count = ++ count; // тут явно не то
-        brandCount.put(transport.getModel(), count);
+        String model = transport.getModel(); // тут явно не то
+        if(brandCount.containsKey(model)){
+            int count = brandCount.get(model);
+            brandCount.put(model, ++count);
+        }
+        else {
+            brandCount.put(model, 1);
+        }
     }
 
     public int getBrandCount(String brand) {

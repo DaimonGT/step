@@ -20,7 +20,7 @@ public class TransportUserManager {
     }
 
     public void removeTransport(User owner, String licensePlate) {
-        List<Transport> transport = transportByOwner.remove(owner);
+        List<Transport> transports = transportByOwner.remove(owner);
         for (Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()) {
             List<Transport> value = entry.getValue();
             Iterator<Transport> iterator = value.iterator();
@@ -33,6 +33,17 @@ public class TransportUserManager {
         }
     }
 
+/*    public void removeTransport(User owner, String licensePlate) {
+        List<Transport> transports = transportByOwner.get(owner);
+        Iterator<Transport> iterator = transports.iterator();
+        while (iterator.hasNext()) {
+            Transport next = iterator.next();
+            if (licensePlate.equals(next.getLicensePlate())) {
+                iterator.remove();
+            }
+        }
+    }*/
+
     public Transport getFastestTransport(User owner) {
         List<Transport> transports = transportByOwner.get(owner);
         transports.sort(new TransportSpeedComparator());
@@ -40,14 +51,18 @@ public class TransportUserManager {
     }
 
     public User findOwnerWithMostCars() {
-        Map<Integer, User> ownerWithMostCars = new TreeMap<>();
+        TreeMap<Integer, User> ownerWithMostCars = new TreeMap<>();
         for(Map.Entry<User, List<Transport>> entry : transportByOwner.entrySet()){
-            User owner = entry.getKey();
-            List<Transport> value = entry.getValue();
-            ownerWithMostCars.put(value.size(), owner);
+           int size = entry.getValue().size();
+           User value = entry.getKey();
+            ownerWithMostCars.put(size, value);
+            //User owner = entry.getKey();
+            //List<Transport> value = entry.getValue();
+            //ownerWithMostCars.put(value.size(), owner);
         }
-        Map.Entry<Integer, User> lastEntry = ((TreeMap<Integer, User>) ownerWithMostCars).lastEntry(); // спросить что за запись и как работает
-        return lastEntry.getValue();
+        //Map.Entry<Integer, User> lastEntry = ((TreeMap<Integer, User>) ownerWithMostCars).lastEntry(); // спросить что за запись и как работает
+        //return lastEntry.getValue();
+        return ownerWithMostCars.lastEntry().getValue();
     }
 
     public void printAllOwnersAndTransport(){
