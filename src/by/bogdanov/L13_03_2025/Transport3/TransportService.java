@@ -48,14 +48,14 @@ public class TransportService {
         return listMap;
     }
 
-    public List<String> findTop5MostPopularBrands() {
-        List<Map.Entry<String, Integer>> m = new;
-        for (Map.Entry){
-            m.add(entry);
+/*    public List<String> findTop5MostPopularBrands() {
+        List<Map.Entry<String, Integer>> quantityModel = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry: m.e){
+            quantityModel.add(entry);
         }
-        m.sort(new TranspornMapValueComparator());
+        quantityModel.sort(new TranspornMapValueComparator());
         //взятть последние 5
         Map<String, Integer> top5MostPopularBrands = new HashMap<>();
 
-    }
+    }*/
 }
