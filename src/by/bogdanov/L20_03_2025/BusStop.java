@@ -13,13 +13,19 @@ public class BusStop {
 
     public String boardBus() {
         //проверить размер
-
         String name = queue.poll();
-        if (name == null) {
+        if(queue.isEmpty()){
             return "Очередь пуста";
         } else {
             return "Следующий пассажир: " + name;
         }
+
+/*        String name = queue.poll();
+        if (name == null) {
+            return "Очередь пуста";
+        } else {
+            return "Следующий пассажир: " + name;
+        }*/
     }
 
     public int getQueueSize() {
