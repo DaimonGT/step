@@ -12,20 +12,12 @@ public class BusStop {
     }
 
     public String boardBus() {
-        //проверить размер
-        String name = queue.poll();
-        if(queue.isEmpty()){
-            return "Очередь пуста";
+        if (queue.isEmpty()) {
+            return "Очередь пуста, автобус уезжает пустым";
         } else {
-            return "Следующий пассажир: " + name;
+            String name = queue.poll();
+            return name + " сел в автобус.";
         }
-
-/*        String name = queue.poll();
-        if (name == null) {
-            return "Очередь пуста";
-        } else {
-            return "Следующий пассажир: " + name;
-        }*/
     }
 
     public int getQueueSize() {
@@ -34,7 +26,8 @@ public class BusStop {
     }
 
     public String peekNextPassenger() {
-        return queue.peek();
+        String name = queue.peek();
+        return "Следующий пассажир: " + name;
     }
 
 }

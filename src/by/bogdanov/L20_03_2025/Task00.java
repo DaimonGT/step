@@ -21,15 +21,32 @@ public class Task00 {
         Deque<String> deque = new ArrayDeque<>();
         deque.offerFirst("Первый");
         deque.offerLast("Последний");*/
-        BusStop busStop = new BusStop();
-        busStop.addPassenger("Дима");
-        busStop.addPassenger("Женя");
-        busStop.addPassenger("Саша");
-        System.out.println(busStop.boardBus());
-        System.out.println(busStop.getQueueSize() > 0 ? busStop.getQueueSize() + " человек(а) осталось в очереди." : "Очередь пуста, автобус уезжает");
-        System.out.println(busStop.boardBus());
-        System.out.println(busStop.boardBus());
-        System.out.println(busStop.getQueueSize() > 0 ? busStop.getQueueSize() + " человек(а) осталось в очереди." : "Очередь пуста, автобус уезжает");
 
+        // Задача 1 Имитация автобусной остановки (Queue)
+        BusStop busStop = new BusStop();
+        System.out.println("Задача 1");
+        busStop.addPassenger("Андрей");
+        busStop.addPassenger("Сергей");
+        busStop.addPassenger("Марина");
+        System.out.println(busStop.peekNextPassenger());
+        System.out.println(busStop.boardBus());
+        System.out.println(busStop.boardBus());
+        System.out.println(busStop.boardBus());
+        System.out.println(busStop.boardBus());
+        System.out.println();
+
+        // Задача 2 Модель лифта (Queue)
+        System.out.println("Задача 2");
+        Elevator elevator = new Elevator(3);
+        elevator.enter("Иван");
+        elevator.enter("Мария");
+        elevator.enter("Андрей");
+        elevator.enter("Ольга");
+        System.out.println(elevator.peekNextToExit());
+        System.out.println(elevator.exit());
+        System.out.println(elevator.exit());
+        System.out.println(elevator.getCurrentPassengers() > 0 ? elevator.getCurrentPassengers() + " человек(а) осталось в лифте." : "Лифт пуст, выходить некому.");
+        System.out.println(elevator.exit());
+        System.out.println(elevator.exit());
     }
 }
