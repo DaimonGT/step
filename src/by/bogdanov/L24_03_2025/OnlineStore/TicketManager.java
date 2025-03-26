@@ -32,14 +32,27 @@ public class TicketManager {
         return totalEarnMoney;
     }
 
-    public Set<String> getVIPBuyers(){
+    public Set<String> getVIPBuyers() {
         Set<String> names = new HashSet<>();
         for (Ticket soldTicket : soldTickets) {
-            if(TicketType.VIP == soldTicket.getType()) {
+            if (TicketType.VIP == soldTicket.getType()) {
                 names.add(soldTicket.getBuyerName());
             }
         }
         return names;
+    }
+
+    public int getDiscountedPrice(TicketType type, DayOfWeek day) {
+        int costTicketWithDiscount = 0;
+        return costTicketWithDiscount = type.getPrice() - type.getPrice() * day.getDiscountPercent() / 100;
+    }
+
+    public Map<TicketType, Integer> getAllDiscountedPrices(DayOfWeek day) {
+        Map<TicketType, Integer> costWithDiscount = new EnumMap<>(TicketType.class);
+        for(TicketType type : TicketType.values()){
+            costWithDiscount.put(type, getDiscountedPrice(type, day));
+        }
+        return costWithDiscount;
     }
 }
 

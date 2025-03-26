@@ -1,12 +1,18 @@
 package by.bogdanov.L24_03_2025.OnlineStore;
 
 public enum DayOfWeek {
-    ;
-    private int basePrice;
-    private String description;
+    MONDAY(0),
+    WEDNESDAY(10),
+    FRIDAY(15),
+    SUNDAY(20);
 
-    DayOfWeek(int basePrice, String description) {
-        this.basePrice = basePrice;
-        this.description = description;
+    private int discountPercent;
+
+    DayOfWeek(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public int getDiscountPercent() {
+        return discountPercent;
     }
 }

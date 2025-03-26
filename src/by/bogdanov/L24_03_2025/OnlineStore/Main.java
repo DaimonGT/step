@@ -3,15 +3,18 @@ package by.bogdanov.L24_03_2025.OnlineStore;
 import java.util.Map;
 import java.util.Set;
 
+import static by.bogdanov.L24_03_2025.OnlineStore.DayOfWeek.*;
+import static by.bogdanov.L24_03_2025.OnlineStore.TicketType.STANDARD;
+
 public class Main {
     public static void main(String[] args) {
         TicketManager manager = new TicketManager();
 
         manager.sellTicket("Аня", TicketType.STUDENT);
         manager.sellTicket("Олег", TicketType.VIP);
-        manager.sellTicket("Вика", TicketType.STANDARD);
+        manager.sellTicket("Вика", STANDARD);
         manager.sellTicket("Олег", TicketType.VIP);
-        manager.sellTicket("Аня", TicketType.STANDARD);
+        manager.sellTicket("Аня", STANDARD);
 
         manager.printAllSales();
 
@@ -29,5 +32,8 @@ public class Main {
         for (String name : vipBuyers) {
             System.out.println(name);
         }
+
+        System.out.println(manager.getDiscountedPrice(STANDARD, SUNDAY));
+        System.out.println(manager.getAllDiscountedPrices(SUNDAY));
     }
 }
