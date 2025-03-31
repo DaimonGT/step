@@ -11,12 +11,15 @@ public class ParticipantFactory {
     private static final List<String> sexs = List.of("Мужской", "Женский");
     private static final Set<Integer> passportsId = new HashSet<>();
 
+    private  ParticipantFactory() {
+    }
+
     static Participant next() {
         int sizePassportsId = passportsId.size();
         int randomPassportId = num.nextInt(000000000, 999999999);
         passportsId.add(randomPassportId);
         if (sizePassportsId < passportsId.size()) {
-            return new Participant(names.get(num.nextInt(names.size())), num.nextInt(100), sexs.get(num.nextInt(sexs.size())), passportsId.);
+            return new Participant(names.get(num.nextInt(names.size())), num.nextInt(100), sexs.get(num.nextInt(sexs.size())), randomPassportId);
         } else {
             while (sizePassportsId == passportsId.size()){
                 randomPassportId = num.nextInt(000000000, 999999999);

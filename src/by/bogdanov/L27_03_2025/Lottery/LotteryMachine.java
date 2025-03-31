@@ -5,8 +5,10 @@ import java.util.*;
 public class LotteryMachine<T extends Participant> {
     private List<T> allItems = new ArrayList<>();
     private Queue<T> queue = new ArrayDeque<>();
-    private List<T> winners = new ArrayList<>();
+    private Set<T> winners = new HashSet<>();
     private boolean initialized;
+    private static final int MAX_WINNERS = 2;
+    private int countWinners = 0;
 
     // Старый метод add
 /*    public void add(T item) {
@@ -43,9 +45,13 @@ public class LotteryMachine<T extends Participant> {
         if (!initialized) {
             init();
         }
+        if(winners.size() == MAX_WINNERS){
+            return null;
+        }
         T winner = queue.poll();
-        winners.add(winner);
-        if (winners.size() < 2) {
+        if (winner != null) {
+            countWinners++;
+            allItems.remove(winner);
             winners.add(winner);
         }
         return winner;
