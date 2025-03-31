@@ -2,15 +2,25 @@ package by.bogdanov.L27_03_2025.Lottery;
 
 import java.util.*;
 
-public class LotteryMachine<T> {
+public class LotteryMachine<T extends Participant> {
     private List<T> allItems = new ArrayList<>();
     private Queue<T> queue = new ArrayDeque<>();
-    private List<T> winners = new ArrayList<>(2);
+    private List<T> winners = new ArrayList<>();
     private boolean initialized;
 
-    public void add(T item) {
+    // Старый метод add
+/*    public void add(T item) {
         if (!initialized) {
             allItems.add(item);
+        }
+    }*/
+
+    // новый метод add
+    public void add(T participant) {
+        if (!initialized) {
+            if (participant.getAge() >= 18) {
+                allItems.add(participant);
+            }
         }
     }
 
@@ -22,29 +32,71 @@ public class LotteryMachine<T> {
         }
     }
 
-/*    public T pick() {
+    /*    public T pick() {
+            if (!initialized) {
+                init();
+            }
+            return queue.poll();
+        }*/
+    // Ограничить максимальное количество победителей до 2
+    public T pick() {
         if (!initialized) {
             init();
         }
-        return queue.poll();
-    }*/
-       public T pick() {
-        if (!initialized) {
-            init();
+        T winner = queue.poll();
+        winners.add(winner);
+        if (winners.size() < 2) {
+            winners.add(winner);
         }
-           T winner = queue.poll();
-           winners.add(winner);
-
-       }
+        return winner;
+    }
 
 
-    public void reset(){
+    public void reset() {
         Collections.shuffle(allItems);
         queue.clear();
         queue.addAll(allItems);
     }
 
-    public int remaining(){
+    public int remaining() {
         return queue.size();
+    }
+
+    // Метод который подсчитывает статистику победеителей
+    Map<String, Integer> ageToWinners() {
+        Map<String, Integer> ageWinners = new HashMap<>();
+        int count18To30 = 0;
+        int count30To50 = 0;
+        int count50 = 0;
+        for (T winner : winners) {
+            if (winner.getAge() >= 18 && winner.getAge() < 30) {
+                count18To30++;
+            } else if (winner.getAge() >= 30 && winner.getAge() < 50) {
+                count30To50++;
+            } else {
+                count50++;
+            }
+        }
+        ageWinners.put("18-30", count18To30);
+        ageWinners.put("30-50", count30To50);
+        ageWinners.put("50 и выше", count50);
+        return ageWinners;
+    }
+
+    // Метод который подсчитывает статистику победеителей по полу
+    Map<String, Integer> sexToWinners() {
+        Map<String, Integer> sexWinners = new HashMap<>();
+        int maleWinners = 0;
+        int femaleWinners = 0;
+        for (T winner : winners) {
+            if("Мужской".equals(winner.getName())){
+                maleWinners++;
+            } else {
+                femaleWinners++;
+            }
+        }
+        sexWinners.put("Мужской", maleWinners);
+        sexWinners.put("Женский", maleWinners);
+        return sexWinners;
     }
 }
