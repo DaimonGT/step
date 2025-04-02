@@ -53,7 +53,6 @@ public class LotteryMachine<T extends Participant> {
         return winner;
     }
 
-
     public void reset() throws NotInitializedException {
         if(!initialized) {
             throw new NotInitializedException("Игра еще не началась");
@@ -68,24 +67,21 @@ public class LotteryMachine<T extends Participant> {
     }
 
     // Метод который подсчитывает статистику победеителей
-    Map<String, Integer> ageToWinners() {
-        Map<String, Integer> ageWinners = new HashMap<>();
-        int count18To30 = 0;
-        int count30To50 = 0;
-        int count50 = 0;
+    public Map<String, Integer> ageToWinners() {
+        Map<String, Integer> map = new HashMap<>(Map.of("18-30 лет", 0, "30-50 лет", 0, "50 и больше", 0));
         for (T winner : winners) {
-            if (winner.getAge() >= 18 && winner.getAge() < 30) {
-                count18To30++;
-            } else if (winner.getAge() >= 30 && winner.getAge() < 50) {
-                count30To50++;
-            } else {
-                count50++;
+            int age = winner.getAge();
+            if (age < 30) {
+                map.put("18-30 лет", map.get("18-30 лет") + 1);
+            }
+            if (age > 30 && age < 50) {
+                map.put("30-50 лет", map.get("30-50 лет") + 1);
+            }
+            if (age > 50) {
+                map.put("50 и больше", map.get("50 и больше") + 1);
             }
         }
-        ageWinners.put("18-30", count18To30);
-        ageWinners.put("30-50", count30To50);
-        ageWinners.put("50 и выше", count50);
-        return ageWinners;
+        return map;
     }
 
     // Метод который подсчитывает статистику победеителей по полу
