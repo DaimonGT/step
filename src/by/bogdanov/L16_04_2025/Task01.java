@@ -58,6 +58,7 @@ public class Task01 {
     // Метод проверяет, есть ли элемент:  В аргументах массив и объект
     public static <T> boolean foundElement(T [] arr1, T o){
         for (T t : arr1) {
+            //if(Objects.equals(t, o))
             if(o.equals(t)){
                 return true;
             }
@@ -80,4 +81,13 @@ public class Task01 {
         list2.addAll(list1);
         System.out.println(list1);
     }
+
+
+    public static <T extends Comparable<T>> T min(T el1, T el2){
+        return (el1.compareTo(el2) <=0) ?el1 : el2;
+    }
+
+/*    public static <T> int getIndexElement(T[] array, T element){
+
+    }*/
 }
