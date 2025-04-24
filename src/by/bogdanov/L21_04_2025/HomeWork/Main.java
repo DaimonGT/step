@@ -1,9 +1,6 @@
 package by.bogdanov.L21_04_2025.HomeWork;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,6 +16,23 @@ public class Main {
                 new GroceryItem("Сок", Category.BEVERAGE, 4.97, false),
                 new GroceryItem("Молоко", Category.DAIRY, 4.97, false)
         );
+
+        List<Customer> customers = List.of(
+                new Customer("Андрей", List.of(
+                        new GroceryItem("Milk", Category.DAIRY, 1.2, true),
+                        new GroceryItem("Bread", Category.BAKERY, 0.8, true)
+                )),
+                new Customer("Ирина", List.of(
+                        new GroceryItem("Apple", Category.FRUIT, 0.5, true),
+                        new GroceryItem("Wine", Category.BEVERAGE, 5.0, false),
+                        new GroceryItem("Cheese", Category.DAIRY, 3.0, true)
+                )),
+                new Customer("Сергей", List.of(
+                        new GroceryItem("Eggs", Category.DAIRY, 2.0, true),
+                        new GroceryItem("Chocolate", Category.BAKERY, 1.5, false)
+                )),
+                new Customer("Дима", List.of()));
+
         //Используя filter, получите список всех товаров с Category.DAIRY
         List<GroceryItem> listDairy = groceryItems.stream()
                 .filter(groceryItems1 -> groceryItems1.getCategory().equals(Category.DAIRY))
@@ -66,6 +80,40 @@ public class Main {
         System.out.println(any);
 
         //Получите List<Category> всех уникальных категорий товаров.
-        
+
+        // Получить единый поток всех покупок всех клиентов и собрать List<GroceryItem>
+        List<GroceryItem> listBuy = customers.stream()
+                .flatMap(customer -> customer.getShoppingList().stream())
+                .toList();
+        System.out.println(listBuy);
+
+        // Через map(Customer::getName) и count() вывести численность клиентов.
+        Long customerCount = customers.stream()
+                .map(Customer::getName)
+                .count();
+
+        System.out.println(customerCount);
+
+        //Найдите клиента, у которого максимальная сумма покупок.
+        Optional<Customer> sum = customers.stream()
+                .max(Comparator.comparingDouble(c -> c.getShoppingList().stream().mapToDouble(GroceryItem::getPrice).sum()));
+
+        System.out.println(sum);
+
+        //Соберите Set<String> названий всех купленных товаров
+        Set<String> groceryBuy = customers.stream()
+                .flatMap(customer -> customer.getShoppingList().stream())
+                .map(GroceryItem::getName)
+                .collect(Collectors.toSet());
+
+        System.out.println(groceryBuy);
+
+        //Map<Category, Set<String>>, где ключ — категория, значение — имена покупателей, купивших товары этой категории.
+        //Collectors.groupingBy(Category, Collectors)
+
+        //Optional — покупатель без покупок
+        customers.stream()
+                .flatMap(customer -> customer.getShoppingList().stream())
+
     }
 }
