@@ -112,8 +112,9 @@ public class Main {
         //Collectors.groupingBy(Category, Collectors)
 
         //Optional — покупатель без покупок
-        customers.stream()
-                .flatMap(customer -> customer.getShoppingList().stream())
-
+        Optional<Customer> first = customers.stream()
+                .filter(customer -> customer.getShoppingList().isEmpty())
+                .findFirst();
+        System.out.println(first);
     }
 }
