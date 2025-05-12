@@ -1,0 +1,53 @@
+Добавь студента с именем, содержащим апостроф (O'Connor, 18 лет, 'B')
+INSERT INTO stydents (name, age, grade)
+VALUES ('O''Connor', 18, 'В');
+
+Получить всех студентов
+SELECT * FROM stydents;
+
+Получить имена и оценки студентов
+SELECT name FROM stydents;
+
+Найти студентов старше 18 лет
+SELECT * FROM stydents
+WHERE age > 18;
+
+Найти студентов с оценкой 'A'
+SELECT * FROM stydents
+WHERE grade = 'A'
+
+Вывести студентов по алфавиту
+SELECT * FROM stydents
+ORDER BY name
+
+Найти студентов, у кого нет оценки (grade IS NULL)
+SELECT * FROM stydents
+WHERE grade IS NULL;
+
+Получить всех, у кого имя начинается с "А"
+SELECT * FROM stydents
+WHERE name LIKE 'А%';
+
+Найти студентов с возрастом между 18 и 20
+SELECT * FROM stydents
+WHERE age BETWEEN 18 AND 20;
+
+Подсчитать общее количество студентов
+SELECT COUNT(name) FROM stydents;
+
+Найти возраст студента, который выше среднего возраста группы
+SELECT name, age
+FROM stydents
+where age > (SELECT AVG(age) FROM stydents)
+
+Найти минимальный возраст у студента
+SELECT * FROM stydents
+WHERE age = (SELECT MIN(age) FROM stydents);
+
+Найти максимальный возраст у студента
+SELECT * FROM stydents
+WHERE age = (SELECT MAX(age) FROM stydents);
+
+
+
+

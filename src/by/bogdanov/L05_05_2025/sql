@@ -38,3 +38,45 @@ RENAME COLUMN name TO  full_name;
 УДАЛЕНИЕ КОЛОНКИ
 ALTER TABLE users
 DROP COLUMN age;
+
+Добавление в таблицу
+INSERT INTO users (full_name, email, phone)
+VALUES ('Иван Петрович', 'petrovich@mail.ru', '+375299999999'),
+('Олег Васильев', 'vasilev@mail.ru', '+375297777777');
+
+сортировка
+SELECT full_name, phone FROM users
+ORDER BY full_name, email;
+
+условия на null or not null
+SELECT full_name, phone FROM users
+WHERE phone IS NOT NULL
+ORDER BY full_name, email;
+
+
+SELECT * FROM users
+WHERE age BETWEEN 20 AND 50;
+
+Подсчет количества у кого age < 30
+SELECT COUNT(*) FROM users
+WHERE age < 30
+
+Назвать колонку с результатом(as age_less_than_30 - название колонки)
+SELECT COUNT(*) as age_less_than_30 FROM users
+WHERE age < 30
+
+среднее хначение
+SELECT AVG (age) AS avarage_age FROM users;
+
+LIKE - НЕПОЛНОЕ СОВПАДЕНИЕ  %Дми% - В любом месте Дми% в начале
+SELECT full_name AS ФИО, email AS  почта FROM users
+WHERE full_name LIKE '%Дми%';
+
+Группировка в обратном порядке
+SELECT full_name AS ФИО, email AS  почта FROM users
+ORDER BY email DESC
+LIMIT 2;
+
+Попадает в эти значения(30 и 25)
+SELECT full_name AS ФИО, email AS  почта FROM users
+WHERE age IN (30, 25);
