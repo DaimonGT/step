@@ -1,0 +1,36 @@
+LEFT join
+SELECT u.full_name, o.created_at
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id;
+
+RIGHT join
+SELECT u.full_name AS ФИО, o.created_at AS Время_заказа
+FROM users u
+RIGHT JOIN orders o ON u.id = o.user_id
+
+INNER JOIn
+SELECT u.full_name AS ФИО, o.created_at AS Время_заказа
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+
+Сортировка, где 2 в ORDER BY - это номер колонки
+SELECT u.full_name AS ФИО, SUM(o.total) AS Сумма
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+GROUP BY full_name
+ORDER BY 2
+
+HAVING - используется после группировки (GROUP BY)
+SELECT u.full_name AS ФИО, SUM(o.total) AS Сумма
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+GROUP BY full_name
+HAVING SUM(total) > 500;
+
+Максимальная сумма заказа
+SELECT u.full_name AS ФИО, MAX(o.total) AS Максимальная_сумма
+FROM users u
+JOIN orders o ON u.id = o.user_id
+GROUP BY full_name
+ORDER BY 2 DESC
+LIMIT 1;

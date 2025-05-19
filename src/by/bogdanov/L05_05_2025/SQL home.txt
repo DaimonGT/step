@@ -82,6 +82,15 @@ FROM books
 WHERE price = (SELECT MAX(price) FROM books)
 ORDER BY category
 
+SELECT b1.* FROM books b1
+WHERE b.price = (SELECT MAX(b2.price)
+FROM books b2
+WHERE b2.category = b1.category)
+
+SELECT category, MAX(price) as max_price
+FROM books
+GROUP BY category
+
 16.Выведи книги, где название содержит слово "Java" (регистр не учитывать)
 SELECT * FROM books
 WHERE title ILIKE '%Java%';
@@ -94,7 +103,9 @@ SELECT * FROM books
 WHERE year > 2015 AND price > (SELECT AVG(price) FROM books);
 
 19. Выведи каждую книгу и среднюю цену книг по её жанру (подзапрос в SELECT)
-
+SELECT b1.*,(SELECT AVG(price) FROM books b2
+WHERE b2.category = b1.category) as avg_category_price
+FROM books b1
 
 
 
