@@ -52,5 +52,68 @@ FROM cities
 WHERE foundation_year < 1000
 ORDER BY foundation_year;
 
-9.
+9. Столицы с населением менее 1 миллиона
+SELECT capital,
+population
+FROM countries
+WHERE population > 1000000;
+
+10. Языки, на которых говорят в Индии
+SELECT c.country_name, l.language_name
+FROM countries c
+INNER JOIN country_languages conl ON c.country_id = conl.country_id
+INNER JOIN languages l ON conl.language_id = l.language_id
+WHERE country_name = 'India';
+
+11. Вывести топ-5 стран с самыми большими столицами по населению (не работает)
+SELECT capital
+FROM countries con
+INNER JOIN cities cit ON con.country_id = cit.country_id
+
+12. Подсчитать общее население каждого континента
+SELECT continent_name, population
+FROM continents
+ORDER BY population DESC
+
+13. Получить список всех стран с их столицами, континентами и языками
+SELECT DISTINCT (con.continent_name), c.country_name, c.capital, l.language_name
+FROM countries c
+INNER JOIN continents con ON c.continent_id = con.continent_id
+INNER JOIN cities cit ON c.country_id = cit.country_id
+INNER JOIN country_languages conl ON c.country_id = conl.country_id
+INNER JOIN languages l ON conl.language_id = l.language_id
+
+14. Найти страны, где английский язык является официальным
+SELECT c.country_name, l.language_name, conl.is_official
+FROM countries c
+INNER JOIN country_languages conl ON c.country_id = conl.country_id
+INNER JOIN languages l ON conl.language_id = l.language_id
+WHERE language_name = 'English'
+
+15. Получить список достопримечательностей с описанием и типом, построенных до 1800 года
+SELECT landmark_name, description , type, year_built
+FROM landmarks
+WHERE year_built < 1800
+ORDER BY year_built DESC
+
+16. Найти страны с наибольшей площадью, входящие в топ-5
+SELECT country_name, area_sq_km
+FROM countries
+ORDER BY area_sq_km DESC
+LIMIT 5;
+
+17. Найти страны, где более 80% населения говорит на официальном языке
+SELECT c.country_name, conl.percentage
+FROM countries c
+INNER JOIN country_languages conl ON c.country_id = conl.country_id
+WHERE percentage > 80
+ORDER BY percentage DESC;
+
+18. Вывести список всех стран с их крупнейшим городом
+SELECT country_name, capital
+FROM countries
+
+19. Найти топ-3 страны с наибольшей средней плотностью населения в их городах
+
+
 
