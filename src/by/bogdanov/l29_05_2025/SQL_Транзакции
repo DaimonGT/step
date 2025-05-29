@@ -1,0 +1,121 @@
+Пример чтобы запрос выполнялся в одной транзакции
+BEGIN; -- начало транзакции
+
+UPDATE accounts SET balance = balance - 100
+WHERE user_id = 1;
+UPDATE accounts SET balance = balance + 100
+WHERE user_id = 2;
+
+COMMIT; -- конец транзакции
+
+
+BEGIN;
+
+UPDATE accounts SET balance = balance - 100
+WHERE user_id = 1;
+UPDATE accounts SET balance = balance + 100
+WHERE user_id = 2;
+
+ROLLBACK; -- откатывает условие, если есть условие
+
+Откат то сохраненной точки
+BEGIN;
+
+UPDATE accounts SET balance = balance - 100
+WHERE user_id = 1;
+
+SAVEPOINT transfer_point
+
+UPDATE accounts SET balance = balance + 100
+WHERE user_id = 2;
+
+ROLLBACK TO SAVEPOINT transfer_point;
+
+Изолировали доступ
+BEGIN;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+UPDATE accounts SET balance = balance - 100
+WHERE user_id = 1;
+
+SAVEPOINT transfer_point;
+
+UPDATE accounts SET balance = balance + 100
+WHERE user_id = 2;
+
+ROLLBACK TO SAVEPOINT transfer_point;
+
+COMMIT;
+
+Домашка
+-- Таблица Пользователи (Users)
+CREATE TABLE users1 (
+    userID SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    registrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO users1 (name, email) VALUES
+('Анна', 'anna@email.com'),
+('Борис', 'boris@email.com'),
+('Вера', 'vera@email.com'),
+('Глеб', 'gleb@email.com'),
+('Дина', 'dina@email.com');
+
+CREATE TABLE Venues (
+    venueID SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    capacity INT NOT NULL CHECK (Capacity > 0)
+);
+
+-- Места проведения
+INSERT INTO venues (name, address, capacity) VALUES
+('Концертный зал', 'Москва, ул. Ленина, 10', 500),
+('Выставочный центр', 'Москва, ул. Арт, 5', 200),
+('Клуб мастер-классов', 'Москва, ул. Творчества, 3', 50);
+
+-- Таблица Мероприятия (Events)
+CREATE TABLE Events (
+    eventID SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    dateTime TIMESTAMP NOT NULL CHECK (DateTime > NOW()),
+    venueID INT,
+    totalSeats INT NOT NULL CHECK (TotalSeats > 0),
+    ticketPrice DECIMAL(10, 2) NOT NULL CHECK (TicketPrice >= 0),
+    FOREIGN KEY (venueID) REFERENCES venues(venueID)
+);
+
+-- Мероприятия
+INSERT INTO events (name, dateTime, venueID, totalSeats, ticketPrice) VALUES
+('Концерт группы Рок', '2025-06-01 19:00:00', 1, 400, 1500.00),
+('Выставка современного искусства', '2025-06-10 10:00:00', 2, 150, 500.00),
+('Мастер-класс по живописи', '2025-06-15 14:00:00', 3, 30, 2000.00),
+('Джазовый вечер', '2025-06-20 20:00:00', 1, 300, 1200.00),
+('Лекция по истории', '2025-06-25 18:00:00', 2, 100, 300.00);
+
+-- Таблица Бронирования (Bookings)
+CREATE TABLE Bookings (
+    bookingID SERIAL PRIMARY KEY,
+    userID INT,
+    eventID INT,
+    seatsBooked INT NOT NULL CHECK (SeatsBooked > 0),
+    bookingDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) CHECK (Status IN ('confirmed', 'canceled', 'pending')),
+    FOREIGN KEY (userID) REFERENCES users1(userID),
+    FOREIGN KEY (eventID) REFERENCES events(eventID)
+);
+
+-- Бронирования
+INSERT INTO bookings (userID, eventID, seatsBooked, status) VALUES
+(1, 1, 2, 'confirmed'),
+(2, 1, 3, 'confirmed'),
+(3, 2, 1, 'confirmed'),
+(4, 2, 2, 'confirmed'),
+(5, 3, 1, 'confirmed'),
+(1, 3, 2, 'confirmed'),
+(2, 4, 4, 'confirmed'),
+(3, 4, 1, 'canceled'),
+(4, 5, 5, 'confirmed'),
+(5, 5, 2, 'confirmed');
