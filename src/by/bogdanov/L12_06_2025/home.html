@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Форма</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/register" method="post">
+        <h3>Регистрация</h3>
+          <label for="user_name" class="">Имя:</label>
+          <input type="text" name="user_name" placeholder="Введите имя">
+          <label for="user_email">Email:</label>
+          <input type="email" name="user_email" placeholder="Введите email">
+          <label for="user_password">Пароль:</label>
+          <input type="password" name="user_password" placeholder="Введите пароль">
+          <label for="gender">Пол:</label>
+          <input type="radio" name="gender" value="male" checked> Мужской
+          <input type="radio" name="gender" value="female" checked> Женский
+          <label for="interests">Интересы</label>
+          <input type="checkbox" name="interests" value="music" checked> Музыка
+          <input type="checkbox" name="interests" value="sport" checked> Спорт
+          <input type="checkbox" name="interests" value="reading" checked> Чтение
+          <label for="country">Страна:</label>
+          <select name="country">
+            <option value="Russia" selected>Россия</option>
+            <option value="England">Англия</option>
+            <option value="USA">США</option>
+          </select>
+          <button type="submit">Зарегестрироваться</button>
+        </form>
+    </div>
+</body>
+</html>
