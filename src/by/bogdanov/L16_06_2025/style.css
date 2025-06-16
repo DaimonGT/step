@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 210px;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    gap: 7px;
+}
+
+.block{
+    border: 2px solid black;
+    margin: 2px;
+    width: 100px;
+}
+.grow{
+    flex-basis: 50px;
+    align-self: flex-end;
+    order: 1;
+}
+
+@media (max-width: 400px) {
+    
+}
