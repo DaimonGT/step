@@ -56,4 +56,50 @@ for (let i = 0; i < fruits.length; i++) {
 }
 
 // Задача 7: Перебор свойств объекта
+let book = {
+  title: "JavaScript для начинающих",
+  author: "Иван Петров",
+  pages: 200,
+  price: 1500
+};
 
+for(key in book) {
+console.log(key + ": " + book[key]);
+}
+
+// Задача 8: Фильтрация объектов в массиве
+//Напишите цикл for, который выводит имена студентов из группы "ПИ-101".
+
+let students = [
+  { name: "Алексей", age: 20, group: "ПИ-101" },
+  { name: "Мария", age: 19, group: "ПИ-102" },
+  { name: "Иван", age: 21, group: "ПИ-101" }
+];
+
+for (let i = 0; i < students.length; i++) {
+  if (students[i].group === "ПИ-101") {
+    console.log(students[i].name);
+  }
+}
+
+// Задача 9: Поиск максимального значения
+// Напишите цикл for...in, который находит название самого дорогого товара.
+
+let products = {
+  "ноутбук": 50000,
+  "телефон": 30000,
+  "наушники": 8000,
+  "мышь": 2000
+};
+
+let maxPrice = 0;
+let expensiveProduct = '';
+
+for (key in products) {
+  if (products[key] > maxPrice) {
+    maxPrice = products[key];
+    expensiveProduct = key;
+  }
+}
+
+console.log("Самый дорогой товар:", expensiveProduct);
